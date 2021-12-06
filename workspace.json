@@ -1,4 +1,108 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "boostup-ui-shared": {
+      "root": "libs/boostup/ui-shared",
+      "sourceRoot": "libs/boostup/ui-shared/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/boostup/ui-shared",
+            "tsConfig": "libs/boostup/ui-shared/tsconfig.lib.json",
+            "project": "libs/boostup/ui-shared/package.json",
+            "entryFile": "libs/boostup/ui-shared/src/index.ts",
+            "external": ["react/jsx-runtime"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "libs/boostup/ui-shared/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/boostup/ui-shared/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/boostup/ui-shared"],
+          "options": {
+            "jestConfig": "libs/boostup/ui-shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/boostup/ui-shared/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/boostup-ui-shared",
+            "config": {
+              "configFolder": "libs/boostup/ui-shared/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "boostup-ui-shared-e2e": {
+      "root": "apps/boostup-ui-shared-e2e",
+      "sourceRoot": "apps/boostup-ui-shared-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/boostup-ui-shared-e2e/cypress.json",
+            "devServerTarget": "boostup-ui-shared:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "boostup-ui-shared:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/boostup-ui-shared-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["boostup-ui-shared"]
+    },
+    "components": "apps/components",
+    "components-e2e": "apps/components-e2e"
+  }
 }
