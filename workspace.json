@@ -101,8 +101,6 @@
       },
       "tags": [],
       "implicitDependencies": ["boostup-ui-shared"]
-    },
-    "components": "apps/components",
-    "components-e2e": "apps/components-e2e"
+    }
   }
 }
