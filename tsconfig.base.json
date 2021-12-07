@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@boostup/ui": ["libs/boostup/ui-shared/src/index.ts"]
+      "@poc-nx-bb/ui": ["libs/boostup/ui-shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
