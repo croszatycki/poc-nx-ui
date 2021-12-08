@@ -17,6 +17,7 @@
           "executor": "@nrwl/web:package",
           "outputs": ["{options.outputPath}"],
           "options": {
+            "buildableProjectDepsInPackageJsonType": "dependencies",
             "outputPath": "dist/libs/boostup/ui-shared",
             "tsConfig": "libs/boostup/ui-shared/tsconfig.lib.json",
             "project": "libs/boostup/ui-shared/package.json",
